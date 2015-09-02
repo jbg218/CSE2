@@ -12,9 +12,9 @@ public class WelcomeClass
     public static void main(String[] args) 
     {
 //print the statement
-    System.out.println("   -----------");
-    System.out.println("   | WELCOME |");
-    System.out.println("   -----------");
+    System.out.println("  -----------");
+    System.out.println("  | WELCOME |");
+    System.out.println("  -----------");
     System.out.println("  ^  ^  ^  ^  ^  ^");
     System.out.println(" / \\/ \\/ \\/ \\/ \\/ \\");
     System.out.println("<-J--B--G--2--1--8->");
