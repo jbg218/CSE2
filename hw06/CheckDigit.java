@@ -10,6 +10,7 @@ public class CheckDigit
 {
     public static void main(String[] args)
     {
+//Declare the variables to be used later
         Scanner myScan = new Scanner(System.in);
         int originalInput;
         int input;
@@ -25,38 +26,39 @@ public class CheckDigit
         int remainder = 0;
         int value;
         int checkDigit;
-        System.out.print("Enter a 10 digit barcode: ");
         int barcode = 0;
         String trash;
         boolean number = true;
         int x = 0;
         int length;
+//Prompt the user for input
+        System.out.print("Enter a 10 digit barcode: ");
+//Check that the input is a number and return true or false in number
         number = myScan.hasNextInt();
+//assign the input to the string trash
         trash = myScan.nextLine();
+// check the length of the string to see if it is 10 characters
         length = trash.length();
+//if it is too short, replace it with a string that will fail the number check but will
+//provide a character for the last digit check later (char last = trash.charAt(9))
         if(length != 10)
         {
             trash = "0X00000000";
         }
         char last = trash.charAt(9);
+//Since the last digit can be X for 10, have to replace it with a number so it passes the number check
         if(last == 'X')
         {
             trash = trash.replace("X","0");
             x = 1;
         }
+//If the digit fails the checks for number, length, or last digit is X it repeats and asks for input
         while((number == false || length != 10) && x == 0)
         {
             System.out.println("Invalid barcode.");
             System.out.print("Enter 10 Digit Barcode: ");
             number = myScan.hasNextDouble();
-            if(number ==true)
-            {
-                trash  =myScan.next();
-            }
-            if(number == false)
-            {
-                trash = myScan.next();
-            }
+            trash = myScan.next();
             length = trash.length();
             if(length != 10)
             {
@@ -69,6 +71,7 @@ public class CheckDigit
                 x = 1;
             }
         }
+//If the barcode passes the checks, convert the string to a integer
         while (number == true && length ==10 || x==1)
         {
             barcode = Integer.parseInt(trash);
@@ -76,42 +79,26 @@ public class CheckDigit
         }
         System.out.println("");
         input = barcode;
+//divides the barcode to get an integer at each digit and then subtracts from input to go to next digit
         ten = input / 1000000000;
-        //System.out.println("ten"+ten);
         input = input - (1000000000*ten);
-        //System.out.println(input);
         nine = input / 100000000;
-        //System.out.println("nine" +nine);
         input = input -(100000000*nine);
-        //System.out.println(input);
         eight = input / 10000000;
-        //System.out.println("eight" +eight);
         input = input - (10000000*eight);
-        //System.out.println(input);
         seven = input / 1000000;
-        //System.out.println("seven" +seven);
         input = input - (1000000*seven);
-        //System.out.println(input);
         six = input / 100000;
-        //System.out.println("six" +six);
         input = input - (100000*six);
-        //System.out.println(input);
         five = input /10000;
-        //System.out.println("five" +five);
         input  = input - (five *10000);
-        //System.out.println(input);
         four = input / 1000;
-        //System.out.println("four" +four);
         input = input -(1000*four);
-        ///System.out.println(input);
         three = input /100;
-        //System.out.println("three" +three);
         input = input - (100*three);
-        //System.out.println(input);
         two = input / 10;
-        //System.out.println("two" +two);
         input = input - (10*two);
-        //System.out.println(input + " " + originalInput);
+//If the last digit was X (x ==1), it was changed to 0 so remainder has to be changed to 10
         if(x == 0)
         {
             remainder = input;
