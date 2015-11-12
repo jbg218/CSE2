@@ -9,6 +9,52 @@ import java.util.Scanner;
 
 public class CSE2Linear
 {
+//Method to perform binary search
+    public static void binarySearch(int[] grades, int searchNum)
+    {
+        double halfLength = (grades.length)/2;
+        int position;
+        if(halfLength - (int)halfLength >0)
+        {
+            position = (int)halfLength+1;
+        }
+        else
+        {
+            position = (int) halfLength;
+        }
+        int iterations=0;
+        int found = 0;
+        int high = grades.length;
+        int low = 0;
+        int numberCheck = grades[position];
+        while(low <= high)
+        {
+            position = (high+low)/2;
+            numberCheck = grades[position];
+            iterations++;
+            if(numberCheck == searchNum)
+            {
+                System.out.println("The number was found with " + iterations + " iterations.");
+                found = 1;
+                break;
+            }
+            if(numberCheck<searchNum)
+            {
+                low = position +1;
+                found = 0;
+            }
+            if(numberCheck>searchNum)
+            {
+                high = position-1;
+                found = 0;
+            }
+        }
+        if(found ==0)
+        {
+            System.out.println("The number was not found with " + iterations + " iterations.");
+        }
+        
+    }
 //method to ask for unput and verify that entry is an int
     public static String askInput(int i)
     {
@@ -115,25 +161,8 @@ public class CSE2Linear
             }
             number = Integer.parseInt(search);
         }
-        int iterations = 0;
-        int found = 0;
-        for(int i = 0;i<15;i++)
-        {
-            iterations++;
-            if(number == grades[i])
-            {
-                found = 1;
-                break;
-            }
-        }
-        if(found == 1)
-        {
-            System.out.println(number + " was found with " + iterations + " iterations.");
-        }
-        else
-        {
-            System.out.println(number + " was not found with " + iterations + " iterations.");
-        }
+        binarySearch(grades,number);
+        
 //Shuffle
         for(int i = 0;i<50;i++)
         {
@@ -179,8 +208,8 @@ public class CSE2Linear
             }
             number = Integer.parseInt(search);
         }
-        iterations = 0;
-        found = 0;
+        int iterations = 0;
+        int found = 0;
         for(int i = 0;i<15;i++)
         {
             iterations++;
